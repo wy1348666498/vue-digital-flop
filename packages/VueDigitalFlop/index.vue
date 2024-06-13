@@ -9,7 +9,7 @@ export default {
 </script>
 
 <script setup>
-import { ref, watch, nextTick, defineProps } from "vue";
+import { ref, watch, nextTick, defineProps, onBeforeUnmount } from "vue";
 const num = ref(0);
 const props = defineProps({
   // 起始值
@@ -50,10 +50,14 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  // 小数点后保留几位
+  // 小数点后保留几位 -1为不保留
   toFixedNum: {
     type: Number,
     default: 0,
+    validator(value) {
+      // 验证是否为整数
+      return Number.isInteger(value);
+    },
   },
 });
 
@@ -93,8 +97,13 @@ function animationTo(duration, form, to, fun) {
 }
 
 // 格式化数据，返回想要展示的数据格式
-function formatNumber(val) {
-  val = val.toFixed(props.toFixedNum);
+function formatNumber(num) {
+  // 判断是否为负数
+  const isMinus = num < 0;
+  let val = Math.abs(num);
+  if (props.toFixedNum >= 0) {
+    val = val.toFixed(props.toFixedNum);
+  }
   val += "";
   const x = val.split(".");
   let x1 = x[0];
@@ -105,7 +114,7 @@ function formatNumber(val) {
       x1 = x1.replace(rgx, "$1" + props.separator + "$2");
     }
   }
-  return props.prefix + x1 + x2 + props.suffix;
+  return props.prefix + (isMinus ? "-" : "") + x1 + x2 + props.suffix;
 }
 
 watch(
@@ -114,8 +123,8 @@ watch(
     nextTick(() => {
       animationTo(
         props.duration,
-        old || props.start || 0,
-        val || 0,
+        Number(old) || props.start || 0,
+        Number(val) || 0,
         (value) => {
           num.value = formatNumber(value);
         }
@@ -126,4 +135,9 @@ watch(
     immediate: true,
   }
 );
+
+onBeforeUnmount(() => {
+  // 组件销毁时，清除动画
+  animationFrameId && cancelAnimationFrame(animationFrameId);
+});
 </script>

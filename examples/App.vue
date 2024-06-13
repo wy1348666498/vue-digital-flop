@@ -8,7 +8,7 @@ import { ref } from "vue";
 
 const num = ref(0);
 setInterval(() => {
-  num.value = num.value + Math.floor(Math.random() * 100);
+  num.value = num.value - Math.floor(Math.random() * 100);
 }, 2500);
 </script>
 

@@ -7,21 +7,21 @@
     ```
     npm install vue3-digital-flop --save
     ```
-2. Yarn
+2. yarn
     ```
     yarn add vue3-digital-flop
     ```
 ## 组件配置
-| 参数 | 说明                        | 类型      | 默认值  |
-| --- |---------------------------|---------|------|
-| start | 起始值 | Number | 0    |
-| end | 结束值 | Number | 0    |
-| duration | 动画持续时间 | Number | 1000 |
-| separator | 分隔符 | String | , |
-| decimal | 小数点 | String | . |
-| prefix | 前缀 | String |  |
-| suffix | 后缀 | String |  |
-| toFixedNum | 小数点后保留几位 | Number | 0 |
+| 参数 | 说明              | 类型      | 默认值  |
+| --- |-----------------|---------|------|
+| start | 起始值             | Number | 0    |
+| end | 结束值             | Number | 0    |
+| duration | 动画持续时间          | Number | 1000 |
+| separator | 分隔符             | String | , |
+| decimal | 小数点             | String | . |
+| prefix | 前缀              | String |  |
+| suffix | 后缀              | String |  |
+| toFixedNum | 小数点后保留几位，-1为不保留 | Number | 0 |
 
 
 ## 注意项
