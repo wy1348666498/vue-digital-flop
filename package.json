@@ -1,12 +1,15 @@
 {
   "name": "vue3-digital-flop",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "license": "MIT",
   "main": "lib/vue3-digital-flop.umd.min.js",
   "description": "数字翻牌器",
   "author": "WeiYang<2116466260@qq.com>",
-  "keywords": ["vue", "vue3"],
+  "keywords": [
+    "vue",
+    "vue3"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/wy1348666498/vue3-digital-flop.git"
